@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义鼠标右键</title>
+</head>
+
+<body>
+	<p id="myp">点我，弹出自定义右键菜单</p>
+	<div id="mydiv">
+    	<li>你来啊</li>
+        <li>你快来啊</li>
+        <li>你来啊</li>
+        <li>你来啊你来啊</li>
+    </div>
+    <script>
+		var myp=document.getElementById("myp");
+		var mydiv=document.getElementById("mydiv");
+		myp.onmousedown=function (event){
+			var event= event ? event : window.event;
+			if(event.button==2){
+				document.oncontextmenu=function(aevent){
+					if(window.event){
+						aevent=window.event;
+						aevent.returnValue=false;
+					}else{
+						aevent.preventDefault();
+					}
+				};
+				mydiv.style.cssText="display:block;position:absolute;top:"+(event.clientY+5)+"px;left:"+event.clientX+"px;";
+				
+			}
+		}
+		mydiv.onmouseout=function(){
+			setTimeout(function (){mydiv.style.cssText="display:none;"},400);
+		}
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>aaaaa</li>
+		<li>aaaaaa</li>
+		<li>aaaaaa</li>
+		<li>aaaaaaa</li>
+	</ul>
+	<img src="1.jpg"><div style="display:inline-block;width:400px;height:400px;">这才是真的坐标出发事件</div>
+	<script type="text/javascript">
+		mydiv=document.getElementsByTagName("div")[0];
+		mydiv.onmousedown=function(){
+			var e=event?event:window.event;
+			console.log("clientX:"+e.clientX+"-----clientY"+e.clientY);
+			console.log("screenX:"+e.screenX+"-----screenY:"+e.screenY);
+		}
+	</script>
+	
+</body>
+</html>

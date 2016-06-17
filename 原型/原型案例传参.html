@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>原型案例传参</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Person(name,sal){
+			this.name=name;
+			this.sal=sal;
+		}
+		Person.prototype={
+			toString:function(){
+				return "姓名"+this.name+"薪水"+this.sal;
+			},
+			work:function(){
+				document.write(this.name+"开始工作"+"<br/>");
+			}
+		}
+		function Emp(name,sal,no){
+			Person.call(this,name,sal);
+			this.no=no;
+		}
+		Emp.prototype=new Person();
+		Emp.prototype.constructor=Emp; 
+
+		Emp.prototype.toString=function(){
+			return "姓名"+this.name+"薪水"+this.sal+"编号"+this.no;
+		}
+		var emp=new Emp("张三",2000,1);
+		emp.
+
+	</script>
+</body>
+</html>

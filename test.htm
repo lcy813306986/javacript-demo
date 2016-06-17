@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body>
+   <!--  test:判断字符串里面是否能够匹配到正则，能够，返回ture,不能够，则返回false
+    \n 换行
+	\t 空格
+	\r 制表符
+
+	\d   数字
+	\D   非数值
+	\s   空格
+	\S   非空格
+	\w   字符（数字，字母，下划线）
+	\W   非字符
+ -->
+	<script type="text/javascript">
+
+		var str="abdg";
+		//定义一个正则，用来匹配字符串b
+		var reg=/b/;
+		console.log(reg.test(str));    //ture   //这里判断是不是有b字母
+
+
+		var str2="shdig45d6fj45";
+		var reg=/\d/;
+		console.log(reg.test(str2));   //ture    -->这里判断str2是不是含有数字
+
+		var str3="dhsif5646fsfjk";
+		var reg=/\D/;
+		if(reg.test(str3)){
+			document.write("不是纯数字");
+		}else{
+			document.write("是纯数字");
+		}
+
+
+	</script>不是纯数字
+
+</body></html>

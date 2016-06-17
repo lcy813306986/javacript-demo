@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>可拖拽</title>
+<style type="text/css">
+	#box{
+		position:absolute;
+		left:0px;
+		top:0px;
+		font-size:12px;
+		padding:5px;
+		background:#9CC;
+		box-shadow:2px 2px 2px #666;
+		-moz-box-shadow:2px 2px 2px #666;
+		-ms-box-shadow:2px 2px 2px #666;
+		-webkit-box-shadow:2px 2px 2px #666;
+	}
+	#content{
+		border:1px solid #ccc;
+	}
+	#top{
+		width:430px;
+		line-height:25px;
+		cursor:move;
+		background:#6CC;
+		padding-left:5px;
+		border-bottom:1px solid #ccc;
+	}
+	#close{
+		color:red;
+		font-size:16px;
+		float:right;
+		position:absolute;
+		top:5px;
+		right:8px;
+		cursor:pointer;
+	}
+	
+	#bottom{
+		width:420px;
+		height:250px;
+		padding:10px 5px;
+	}
+</style>
+</head>
+
+<body>
+	<div id="box">
+    	<div id="content">
+        	<div id="top">
+            	   可拖拽
+                <span id="close">X</span>
+            </div>
+            <div id="bottom">
+            	内容....
+            </div>
+        </div>
+    </div>
+    <script>
+		
+		window.onload=function(){
+			var oBox=document.getElementById("box");
+			var  oTop=document.getElementById("top");
+				document.getElementById("close").onclick=function(){
+					document.getElementById("box").style.display="none";
+				}
+			startDrag(oBox,oTop);
+		}
+		var params={
+			left:0,
+			top:0,
+			currentX:0,
+			currentY:0,
+			flag:false
+		}
+		
+		//获取外部样式
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+				
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+		
+		function startDrag(oBox,oTop){
+			
+			//鼠标按下
+				params.left=getStyle(oBox,"left");
+				params.top=getStyle(oBox,"top");
+				
+				oTop.onmousedown=function(event){
+				params.flag=true;
+				var e= event ? event : window.event;
+				params.currentX=e.clientX;
+				params.currentY=e.clientY;
+					
+			}
+			//鼠标移动
+			document.onmouseover=function(event){
+				var e= event ? event : window.event;
+				if(params.flag){
+					var newX=e.clientX;
+					var newY=e.clientY;
+					var disX=newX-params.currentX;
+					var disY=newY-params.currentY;
+					var maxL=document.documentElement.clientWidght-oBox.offsetWidth;
+					var maxT=document.documentElement.clientHeight-oBox.offsetHeight;
+					disX=disX<0?0:disX;
+					disX=disX>maxL?maxL:disX;
+					disY=disY<0?0:disY;
+					disY=disY>maxT?maxT:disY;
+					oBox.style.left=disX+"px";
+					oBox.style.top=disY+"px";
+						
+				}
+				
+				
+			}
+			//鼠标松开
+			document.onmouseup=function(event){
+				var e= event ? event : window.event;
+				params.flag=false;
+				params.left=getStyle(oBox,"left");
+				params.top=getStyle(oBox,"top");
+			}
+		}
+    </script>
+</body>
+</html>

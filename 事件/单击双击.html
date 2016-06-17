@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<input type="button" value="点我" onClick="aa()" onDblClick="bb()"/>
+    <script>
+		var isab;
+		function aa (){
+			isab=false;
+			window.setTimeout(cc,500);
+			function cc(){
+				if(isab!=false){
+					return;
+				}
+				alert("这是单击");
+			}
+		}
+		function  bb(){
+			isab=true;
+			alert("这是双击");
+		}
+    </script>
+</body>
+</html>

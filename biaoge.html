@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<table cellpadding="0px" cellspacing="0px" border="1" width="400px" id="sjo">
+    	<tr>
+        	<td>书名</td>
+            <td>价格</td>
+        </tr>
+        <tr>
+        	<td>看得见风景的房间</td>
+            <td>￥30.00</td>
+        </tr>
+        <tr>
+        	<td>60个瞬间</td>
+            <td>￥32.00</td>
+        </tr>
+    </table>
+    <input type="button" value="增加一行" onclick="increat()" />
+    <input type="button" value="删除第二行" onclick="delete()" />
+    <input type="button" value="修改标题" onclick="change()" />
+    
+	<script type="text/javascript">
+		function increat(){
+			var table=document.getElementById("sjo");
+			var newrow=table.insertRow(table.rows.length);
+			var cell1=newrow.insertCell(0);
+			cell1.inneHTML="如何不翻船";
+			var cell2=newrow.insertCell(1);
+			cell2.appendChild(docuement.creatTextNode("9998"));
+			}
+			}
+		function delete(){
+			document.getElementById("sjo").deleteRow(1);
+			}
+    </script>
+</body>
+</html>

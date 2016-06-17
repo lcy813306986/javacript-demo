@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>下拉框</title>
+</head>
+
+<body>
+	<select id="year" onChange="setday(this,mouth,day)">
+    	<option  value="" >年</option>
+    </select>
+    
+    <select id="mouth" onChange="setday(year,this,day)">
+    	<option   value="" >月</option>
+    </select>
+    
+    <select id="day">
+    	<option  value="">日</option>
+    </select>
+    
+    <script type="text/javascript">
+		var myyear=document.getElementById("year");
+		var mymouth=document.getElementById("mouth");
+		var myday=document.getElementById("day");
+		
+		window.onload=function(){
+			for(var i=new Date().getFullYear();i>1900;i--){
+				addOption(myyear,i,i);
+			}
+			for(var i=1;i<=12;i++){
+				addOption(mymouth,i,i);
+			}
+			for(var i=1;i<=31;i++){
+				addOption(myday,i,i);
+			}
+		}
+		function setday(year ,mouth,day){
+			var mouthDays=[31,28,31,30,31,30,31,31,30,31,30,31];
+			var y=year.options[year.selectedIndex].text;
+			var m=mouth.options[mouth.selectedIndex].text;
+			var numDay=mouthDays[m-1];
+			if(m==2&&isLeapYear(y)){
+				numDay++;
+			}
+			for(var i=day.options.length-1;i>=numDay;i--){
+				day.remove(i);
+			}
+			for(var i=day.options.length;i<=numDay;i++){
+				addOption(day,i,i);
+			}
+		}
+		function isLeapYear(year){
+			return(year%4==0&&year%100!=0)||(year%400==0);
+		}
+		function addOption(obj,value,text){
+			//创建option
+			var option=document.createElement("option");
+			option.text=text;
+			option.value=value;
+			obj.options.add(option);
+		}
+    </script>
+</body>
+</html>

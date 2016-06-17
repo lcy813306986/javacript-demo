@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基于原型的案例的缺点</titlle>
+</head>
+<body>
+
+	<script type="text/javascript">
+	//属性不要写到原型链中去，这样就会改变原型的属性，只能将方法写到原型链中
+		function Shape(){}
+		Shape.prototype.name='形状';
+		Shape.prototype.toString=function(){return this.name};
+
+		function TwoDShape(){}
+		TwoDShape.prototype=Shape.prototype;
+		TwoDShape.prototype.constructor=TwoDShape;
+		TwoDShape.prototype.name='2D形状';
+
+		function Triangle(bottom,height){
+			this.bottom=bottom;
+			this.height=height;
+		}
+		Triangle.prototype=TwoDShape.prototype;
+		Triangle.prototype.constructor=Triangle;
+		TwoDShape.prototype.getArea=function(){
+			return this.bottom*this.height/2;
+		}
+		var a=new Triangle(3,4);
+		document.write(a.getArea());
+	</script>
+</body>
+</html>

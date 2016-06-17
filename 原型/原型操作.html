@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型操作</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Person(name,age){
+			this.name=name;
+			this.age=age;
+		}
+
+		//利用prototype来一次拓展多个方法
+		Person.prototype.sayHello=function(name){
+			document.write("hello"+name+"<br/>");
+		}
+		//重写
+		Person.prototype={
+			sayBye:function(name){
+				document.write(this.name+"say bye to"+name+"<br/>");
+
+			},
+			eat:function(food){
+				document.write(this.food+""+food+"<br/>");
+			}
+		};
+		var p1=new Person("张三",20);
+		p1.sayBye('simth');
+
+		Person.prototype.grade='一年级';    //这样做，所有的对象的都会有相同的属性
+		document.write(p1.grade+p1.name);
+		var p2=new Person("李四",40);
+		document.write(p2.name+p2.grade);
+
+
+	</script>
+</body>
+</html>

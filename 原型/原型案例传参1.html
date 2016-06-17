@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>原型案例传参</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+	//定义父类
+		function Animal(group,gender){
+			this.group=group;
+			this.gender=gender;
+		}
+
+		Animal.prototype.showInfo(){
+			document.write("当前属性为"+this.group+""+this.gender+"<br/>");
+		}
+
+		//定义子类
+		function Bird(group,gender){
+			Bird.call(this,group,gender);
+		}
+		Bird.prototype=new Animal;
+		Bird.prototype.constructor=Bird;
+
+	</script>
+</body>
+</html>

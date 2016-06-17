@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+</head>
+<body>
+	<p>第一行</p>
+	<p>第二行</p>
+	<p>第三行</p>
+	<script type="text/javascript">
+		function addHandler(nodes){
+			for(var i=0;i<nodes.length;i++){
+				var node=nodes[i];
+				node.onclick=function(i){
+					return function(){   //闭包
+						alert( i+1);
+					}
+				}(i);
+			}
+		}
+		var nodes=document.getElementsByTagName("p");
+		addHandler(nodes);
+	</script>
+</body>
+</html>

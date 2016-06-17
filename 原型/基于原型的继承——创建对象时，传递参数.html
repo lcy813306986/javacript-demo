@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>基于原型的继承——创建对象时，传递参数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//定义一个父类
+		function Animal(group,gender){
+			this.group=group;
+			this.gender=gender;
+		}
+		Animal.prototype.showInfo=function(){
+			document.write("类别:"+this.group+"  "+"性别:"+this.gender);
+		}
+		//定义一个子类
+		function Bird(group,gender){
+			Animal.call(this,group,gender);
+		}
+
+		Bird.prototype=new Animal();
+		Bird.prototype.constructor=Bird;
+
+		var b1=new Bird("鸟类","雌");
+		b1.showInfo();
+
+
+	</script>
+</body>
+</html>

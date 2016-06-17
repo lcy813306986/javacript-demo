@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>下拉框</title>
+
+</head>
+
+<body>
+	  onchange :内容改变的时候出发事件，并不是时时监听 ，而是失去焦点的时候失去监听。
+      <form name="form" id="myform" action="">
+      		<select id="myyear" name="year" onChange="CheckDay()">
+            		<script language="javascript">
+						for(i=1940;i<=2050;i++){
+							document.write('<option value="+i+"+>'+i+'</option>');
+						}
+                    </script>
+            </select>年
+            
+            <select id="mymouth" name="mouth" onChange="CheckDay()">
+            	<script language="javascript">
+					for(var i=1;i<=12;i++){
+						document.write("<option value='+i+'+>"+i+"</option>");
+					}
+                </script>
+            </select>月
+            
+            
+            <select id="myday" name="day">
+            	
+            </select>日
+      
+      <script type="text/javascript">
+	  	
+	  	 function CheckDay(){
+                  document.getElementById("day").options.length = 0;
+				  var mouth=document.getElementById("mouth");
+				  var index=mouth.selectedIndex;
+				  var mouthNo=mouth.options[index].value;
+				  var year=document.getElementById("year");
+				   yearNo = year.options[year.selectedIndex].value;
+         	day=document.getElementById("day")
+					var DayCount;
+					if(mouthNo==1||mouthNo==3||mouthNo==5||mouthNo==7||mouthNo==8||mouthNo==10||mouthNo==12){
+						DayCount=31;
+					}
+					if(mouthNo==4||mouthNo==6||mouthNo==9||mouthNo==11){
+						DayCount=30;
+					}
+					if(mouthNo==2){
+						if(checkYear(yearNo)){
+							DayCount=29;
+						}else{
+							DayCount=28;
+						}
+					}
+			
+					document.form.day.length=DayCount;
+					for(var i=1;i<=DayCount;i++){
+			         var optionObj=document.createElement("option");
+					 optionObj.value=i;
+					 optionObj.innerHTML = i;
+					 this.myday.appendChild(optionObj);  
+					   
+					}
+                }
+				 function checkYear(yearNo){
+			 		if((yearNo%4==0&&yearNo%100!=0) || yearNo%400==0 ){
+							 return true;
+					}else{
+							return flase;
+				   }
+				   }
+				CheckDay();
+      </script>
+      </form>
+</body>
+</html>

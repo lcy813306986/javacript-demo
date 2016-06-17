@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>onselect</title>
+</head>
+
+<body style="-moz-user-select:none;">
+	<div id="test">测试文字</div>
+    <input type="text" value="您来选中我啊" id="inp"/>
+    <textarea id="txt">这里是测试文字，您选中试试</textarea>
+    <script>
+		var test=document.getElementById("test");
+		var inp=document.getElementById("inp");
+		var  txt=document.getElementById("txt");
+		div.onselect=function(){
+			alert("叫你选中就就选中啊");
+		}
+		inp.onselect=function(){
+			alert("叫你选中就就选中啊");
+		}
+		txt.onselect=function(){
+			alert("叫你选中就就选中啊");
+		}
+
+		div.onselectstart=function(){
+			return false;
+		}
+    </script>
+</body>
+</html>

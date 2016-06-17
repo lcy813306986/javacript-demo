@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>andio</title>
+<style type="text/css">
+		*{
+			margin:0px auto;
+			padding:0px;
+		}
+		body{
+			width:800px;
+		}
+		audio{
+			display:block;
+			margin-top:20px;
+		}
+		input{
+			padding:5px 20px;
+			border-radius:5px;
+			margin-top:10px;
+		}
+    </style>
+</head>
+	
+<body>
+	<audio src="短对话 Test 1.mp3" id="audio" controls>
+    	对不起,你的浏览器不支持html,请更新浏览器
+    </audio>
+    <input type="button" value="播放" onClick="playOrPause(this)"/>
+    <input type="button" value="隐藏控制框" onClick="hideOrShowControls(this)"/>
+    <input type="button" value ="开启静音" onClick="muted(this)"/>
+    <input type="button" value="获取播放时间" onClick="getCurrentTime()"/>
+    <input type="button" value="音量+" id="upVol1" onClick="vol('up')"/>
+    <input type="button" value="音量-" id="upVol2" onClick="vol('down')"/>
+    当前的音量：<span id="nowVol"></span>
+    <script type="text/javascript">
+		var audio;
+		window.onload=function(){
+			audio=document.getElementById("audio");
+			//音量值为100
+			document.getElementById("upVol1").innerHTML=audio.value*100;
+		
+		}
+		//播放
+		function playOrPause(obj){
+			//如果audio.paused是真的话   audio.paused 为暂停
+			if(audio.paused){
+				audio.play();
+				obj.value="暂停";
+			}else{
+				audio.pause();
+				obj.value="播放";
+			}
+		}
+		//隐藏控制框
+		function hideOrShowControls(obj){
+			if(audio.controls){
+				audio.removeAttribute("controls");
+				obj.value="显示控制框";
+			}else{
+				audio.controls="controls";
+				obj.value="隐藏控制框";
+			}
+			
+		}
+		//关闭静音
+		function muted(obj){
+			if(audio.muted){
+				audio.muted=false;
+				obj.value="开启静音";
+			}else{
+				audio.muted=true;
+				obj.value="关闭静音"
+				
+			}
+		}
+		//获取时间
+		function getCurrentTime(){
+			alert(audio.currentTime+':秒');
+		}
+		//控制音量
+		function vol(type){
+			if(type=='up'){
+				var volume=audio.volume+0.1;
+				if(volume>=1){
+					volume=1;
+				}
+				audio.volume=volume;
+		}else if(type=='down'){
+			var volume=audio.volume-0.1;
+			if(volume<=0){
+				volume=0;
+			}
+			audio.volume=volume;			
+		}
+		document.getElementById("nowVol").innerHTML=parseInt(audio.volume*100);
+		}
+		
+		//快捷键
+		document.onkeydown=function(event){
+			var e=event?event:window.event;
+			var keycode=e.keyCode;
+			//空格：暂停播放     
+			//shift+s    显示隐藏控制台
+			if(keycode==32){
+				playOrPause(document.getElementsByTagName("input")[0]);
+			}
+			//shift+s   显示隐藏控制台
+			if(e.shiftKey&&keycode==83){
+				hideOrShowControls(document.getElementsByTagName("input")[1]);
+			}
+			//ctrl 右
+			if(e.ctrlKey&&keycode==39){
+				audio.currentTime=audio.currentTime+5;
+			}
+		}
+		window.setInterval(function(){
+			if(audio.ended){
+				
+			}
+		},1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>键盘事件</title>
+</head>
+
+<body>
+	<input type="text" id="txt"/>
+	<script>   
+		var txt=document.getElementById("txt");     //先触发事件  后显示内容
+		/*txt.onkeydown=function(){
+			alert(txt.value);
+		}*/
+		txt.onkeypress=function(){          
+			alert(txt.value);              //先触发事件  后显示内容
+		}
+		/*txt.onkeyup=function(){
+			alert(txt.value);      //先显示内容 ，后触发事件  
+			
+		}*/
+		//keydown keypress 的区别在于，是否能够监听用户按下ctrl shift 等功能键  keypress是监听不到这些功能键的 （除firfox),而keydown可以
+    </script>
+</body>
+</html>

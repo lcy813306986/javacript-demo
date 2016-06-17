@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>将对象成员当成数组操作</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var person={
+			name:'zy',
+			age:20
+		};
+		document.write(person.name+"<br/>");
+		document.write(person['age']+"<br/>");
+
+		person.showInfo=function(){
+			document.write("当前对象的信息为"+this.name+" "+this['age']+"<br/>");
+		}
+		person.showInfo();
+		person['showInfo']();
+
+		document.write("================<br/>");
+		showInfoInObject(person);
+
+		function showInfoInObject(obj){
+			for(var key in obj){      //循环对象中的每一个成员
+				if(obj[key] instanceof Function){
+					obj[key]();
+				}else{
+					document.write(key+":"+obj[key]+"<br/>");
+				}
+			}
+			document.write("<hr/>");
+		}
+	</script>
+</body>
+</html>

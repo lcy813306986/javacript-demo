@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>onunload:卸载事件</title>
+</head>
+
+<body>
+	<script>
+		//目前只支持IE浏览器  刷新页会出发这个事件
+		/*window.onunload=function(){
+			千万不要用alert
+			打开一个网页
+			window.open("http://www.baidu.com");
+		}*/
+		//支持firefox  google  IE也是支持的 
+		window.onbeforeunload=function(){
+			return "真的要离开吗？";
+		}
+    </script>
+</body>
+</html>

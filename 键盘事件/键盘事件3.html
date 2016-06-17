@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>键盘事件3</title>
+</head>
+
+<body>
+	ASCII：
+    fromCharCode:把一个unicode编码值转化成字符值<br><br>
+    <input type="text" value="keydown" id="inp1"/><br><br>
+    <input type="text" value="keypress" id="inp2"/><br><br>
+    <script>
+		var inp1=document.getElementById("inp1");
+		var inp2=document.getElementById("inp2");
+		inp1.onkeydown=function(event){
+			var e=event?event:window.event;
+			var keycode=e.keycode;
+			var txt=String.fromCharCode(keycode);
+			console.log("keydown"+txt);
+		};
+		inp2.onkeypress=function(event){
+			var e=event?event:window.event;
+			if(e.keyCode){
+				var keycode=e.keyCode;
+				var txt=String.fromCharCode(keycode);
+			}else{
+				var keycode=e.which;
+				var txt=String.fromCharCode(keycode);
+			}
+			
+			console.log("keypress"+txt);
+		}
+		
+    </script>
+</body>
+</html>

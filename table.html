@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		var arr=[["张三","19","男"],["李四","22","女"],["王五","20","男"],["赵六","21","女"]];
+		var table=document.createElement("table");
+		table.setAttribute("border","1px");
+		table.setAttribute("width","400");
+		table.setAttribute("cellspacing","0px");
+		table.setAttribute("cellpadding","0px");
+		var str="";
+		for(var i=0;i<arr.length;i++){
+			str+="<tr>";
+			for(var j=0;j<arr[j].length;j++){
+				str+="<td>"+arr[i][j]+"</td>";
+				}
+			str+="</tr>";
+		 	}
+		
+		document.body.appendChild(table);
+    </script>
+</body>
+</html>

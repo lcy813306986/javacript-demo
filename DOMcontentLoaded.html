@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOMcontentLoaded</title>
+<script type="text/jscript" src="DOMcontentLoaded.js"></script>
+
+</head>
+
+<body>
+	<div id="mgs"></div>
+	<div><img src="1.jpg"/> </div>
+    <div><img src="2.jpg"/> </div>
+    <div><img src="3.jpg"/> </div>
+    <div><img src="4.jpg"/> </div>
+    <script>
+    //这个表示网页加载完执行后面的那个函数
+		var timestamp=null;
+		var timestamp1=null;
+		var mgs=document.getElementById("mgs");
+		
+		myReady(function(){
+			alert("b");
+			mgs.innerHTML+="DOM已经加载完毕<br/>";
+		   timestamp1 = Date.parse(new Date());
+		   mgs.innerHTML+="时间戳"+timestamp1+"<br/>";
+		 
+		});
+		
+		
+		
+		window.onload=function(){
+			mgs.innerHTML+="onload已经加载完毕</br>";
+			timestamp= Date.parse(new Date());
+		   	mgs.innerHTML+="时间戳"+timestamp+"<br/>";
+		   	mgs.innerHTML+="dom比ready快"+(timestamp-timestamp1)+"ms<br/>";
+	}
+	
+		
+	
+</script>
+</body>
+</html>
