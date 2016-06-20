@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件流</title>
+</head>
+
+<body>
+	<div id="odiv">
+    	<p id="op">
+        	<span id="ospan">请点击我</span>
+        </p>
+    </div>
+    <script type="text/javascript">
+		var odiv=document.getElementById("odiv");
+		var oid=document.getElementById("oid");
+		var ospan=document.getElementById("ospan");
+		/*odiv.onclick=function(){
+			alert("odiv被点击");
+		}
+		op.onclick=function(){
+			alert("oid被点击");
+		}
+		ospan.onclick=function(){
+			alert("ospan被点击");
+		}*/  
+		//首先是弹出ospan，再弹出oid,最后弹出odiv
+		
+		odiv.addEventListener("click",function(){
+			console.log("div被点击，事件被捕获");
+		},true);
+		op.addEventListener("click",function(){
+			console.log("p被点击，事件被捕获");
+		},true);
+		ospan.addEventListener("click",function(){
+			console.log("span被点击，事件被捕获");
+		},true);
+		//从最不具体的元素开始 ，再逐级向下到具体的元素
+		odiv.addEventListener("click",function(){
+			console.log("div被点击，事件冒泡");
+		},false);
+		op.addEventListener("click",function(){
+			console.log("p被点击，事件冒泡");
+		},false);
+		ospan.addEventListener("click",function(){
+			console.log("span被点击，事件冒泡");
+		},false);
+		//从最具体的元素开始，在逐级向上到不具体的元素
+  </script>
+</body>
+</html>

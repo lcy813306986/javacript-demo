@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>事件处理程序2</title>
+</head>
+
+<body>
+<pre>
+	html事件处理程序：把事件的处理程序（function）直接添加到html代码里面
+    DOM0级事件处理程序：把一个函数赋给一个事件，需要在函数名字前面加“on”
+    DOM2级事件处理程序： addEventListener removeEventListener  事件就不需要加“on”了
+ </pre>
+ <input type="button" value="html事件处理程序" id="btn1" onClick="show1()" onClick="show2()"/><br/>
+ <input type="button" value="DOM0级事件处理程序" id="btn2" /><br/>
+ <input type="button" value="DOM2级事件处理程序" id="btn3"/>
+ <script type="text/javascript">
+ 	function show1(){
+		alert("html事件处理程序，show1");
+	}
+	function show2(){
+		alert("html事件处理程序，show2");
+	}
+	//显示1
+	
+	var btn2=document.getElementById("btn2");
+	btn2.onclick=function(){
+		alert("DOM0级事件处理程序1");
+	}
+	btn2.onclick=function(){
+		alert("DOM0级事件处理程序2");
+	}
+	//显示2
+	
+	
+	var btn3=document.getElementById("btn3");
+	btn3.addEventListener("click",showmessage,false);
+	btn3.addEventListener("click",showmessage2,false);
+	  function showmessage(){ 
+		alert("DOM2级事件处理程序1");
+	}
+	  function showmessage2(){ 
+		alert("DOM2级事件处理程序2");
+	}
+	//1 2 都显示
+ </script>
+</body>
+</html>
